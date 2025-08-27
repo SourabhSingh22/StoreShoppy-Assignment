@@ -26,12 +26,13 @@ const contacts = [
 
 const Notifications = ({ open }) => {
   return (
-    <div
-      className={`fixed md:static top-0 left-0 h-full bg-white transition-all duration-300 ${open ? "w-52" : "w-0 overflow-hidden bg-gray-100"}`}
+    <aside
+      className={`fixed md:static top-0 right-0 h-full w-64 bg-white transition-transform duration-300 z-50
+      ${open ? "translate-x-0" : "translate-x-full"}`}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4">
-        <h2 className="text-lg font-semibold">Notifications</h2>
+      <div className="flex items-center justify-between p-4 border-b">
+        <h2 className="text-base sm:text-lg font-semibold">Notifications</h2>
       </div>
 
       {/* Content */}
@@ -80,7 +81,7 @@ const Notifications = ({ open }) => {
           </ul>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 
