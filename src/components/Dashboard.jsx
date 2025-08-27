@@ -85,10 +85,10 @@ const Dashboard = () => {
                             {stats.map((item, index) => (
                                 <div key={index} className={`p-4 rounded-2xl shadow-sm ${colors[index]} flex flex-col`}>
                                     <p className="text-gray-500 text-sm sm:text-base">{item.title}</p>
-                                    <div className={`flex items-center justify-between text-sm sm:text-lg my-4 ${item.isPositive ? "text-green-600" : "text-red-600"}`}>
+                                    <div className={`flex items-center justify-between text-sm sm:text-[14px] my-4 ${item.isPositive ? "text-green-600" : "text-red-600"}`}>
                                         <h2 className="text-base sm:text-xl md:text-3xl font-bold">{item.value}</h2>
                                         <div className='flex items-center gap-1'>
-                                            {item.isPositive ? <BsArrowUpRight size={16} /> : <BsArrowDownRight size={16} />}
+                                            {item.isPositive ? <BsArrowUpRight size={14} /> : <BsArrowDownRight size={14} />}
                                             <span>{item.change}</span>
                                         </div>
                                     </div>
