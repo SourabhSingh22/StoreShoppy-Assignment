@@ -27,7 +27,7 @@ const contacts = [
 const Notifications = ({ open}) => {
   return (
     <div
-      className={`fixed md:static top-0 left-0 h-full bg-white transition-all duration-300 ${open ? "w-52" : "w-0 overflow-hidden bg-gray-100"}`}
+      className={`fixed md:static top-0 left-0 h-full bg-white transition-all duration-300 ${open ? "w-56" : "w-0 overflow-hidden bg-gray-100"}`}
     >
       {/* Header */}
       <div className="flex items-center justify-between p-4">

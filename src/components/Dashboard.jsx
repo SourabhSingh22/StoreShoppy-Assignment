@@ -14,104 +14,115 @@ import TrafficByLocation from '../assets/TrafficByLocation.png';
 import Profile from './Profile';
 import Notifications from './Notifications';
 
-const Dashboard = ({ darkMode, setDarkMode }) => {
-  const [openMenu, setOpenMenu] = useState(false);
-  const [rightMenuOpen, setRightMenuOpen] = useState(false);
+const Dashboard = () => {
+    const [darkMode, setDarkMode] = useState(false);
+    const [openMenu, setOpenMenu] = useState(true);
+    const [rightMenuOpen, setRightMenuOpen] = useState(true);
 
-  const stats = [
-    { title: "Views", value: "721K", change: "+11.02%", isPositive: true },
-    { title: "Visits", value: "367K", change: "-0.03%", isPositive: false },
-    { title: "New Users", value: "1,156", change: "+15.03%", isPositive: true },
-    { title: "Active Users", value: "239K", change: "+6.08%", isPositive: true },
-  ];
-  const colors = ["bg-blue-100", "bg-purple-100", "bg-blue-100", "bg-purple-100"];
+    const stats = [
+        { title: "Views", value: "721K", change: "+11.02%", isPositive: true },
+        { title: "Visits", value: "367K", change: "-0.03%", isPositive: false },
+        { title: "New Users", value: "1,156", change: "+15.03%", isPositive: true },
+        { title: "Active Users", value: "239K", change: "+6.08%", isPositive: true },
+    ];
+    const colors = ["bg-blue-100", "bg-purple-100", "bg-blue-100", "bg-purple-100"];
 
-  const handleLeftMenu = () => setOpenMenu(!openMenu);
-  const handleRightMenu = () => setRightMenuOpen(!rightMenuOpen);
+    const handleLeftMenu = () => setOpenMenu(!openMenu);
+    const handleRightMenu = () => setRightMenuOpen(!rightMenuOpen);
 
-  return (
-    <div className={`w-full h-full transition-all duration-300 ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"}`}>
-      <div className="flex">
-        {/* Left Profile Sidebar */}
-        <Profile openMenu={openMenu} />
+    return (
+        <div className={`w-full min-h-screen transition-all duration-300 ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"}`}>
+            <div className="flex flex-col md:flex-row">
 
-        <main className={`flex-1 border-l border-r ${darkMode ? "border-gray-700" : "border-gray-200"}`}>
-          <nav className={`${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"} flex items-center justify-between px-8 py-4 border-b shadow-sm`}>
-            <div className='text-xl flex items-center gap-4'>
-              <BiFoodMenu className='text-2xl cursor-pointer' onClick={handleLeftMenu} />
-              <CiStar className='text-2xl' />
-              <p className='text-gray-400 text-lg'>Dashboards</p>
-              <p className='text-gray-400 text-lg'>/</p>
-              <p className='text-lg'>Default</p>
-            </div>
-            <div className='flex items-center gap-4'>
-              <div className={`${darkMode ? "bg-gray-700 border-gray-600" : "bg-gray-200 border-gray-50"} flex items-center text-lg px-2 gap-2 py-1 rounded-lg border focus-within:border-blue-500`}>
-                <IoSearchOutline className='text-gray-400 text-lg' />
-                <input type="text" placeholder='Search' className={`outline-none text-sm bg-transparent ${darkMode ? "text-white" : "text-black"}`} />
-                <div className='flex items-center text-gray-400 text-xl gap-1 pr-1'>
-                  <MdKeyboardCommandKey /><p className='pb-1'>/</p>
-                </div>
-              </div>
-              <div className='text-2xl flex gap-4'>
-                <button onClick={() => setDarkMode(!darkMode)}>
-                  {darkMode ? <MdOutlineLightMode /> : <MdDarkMode />}
-                </button>
-                <IoTimerOutline />
-                <PiBellDuotone />
-                <BiFoodMenu onClick={handleRightMenu} className="cursor-pointer" />
-              </div>
-            </div>
-          </nav>
+                {/* Left Profile Sidebar */}
 
-          {/* Content Sections */}
-          <div className='w-full mt-12 px-8'>
-            <div className='flex items-center gap-2 mb-8'>
-              <h1 className='font-semibold text-lg'>Today</h1>
-              <IoIosArrowDown className='mt-1 text-gray-500 text-lg' />
-            </div>
+                <Profile openMenu={openMenu} setOpenMenu={setOpenMenu} />
 
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-              {stats.map((item, index) => (
-                <div key={index} className={`p-4 rounded-2xl shadow-sm ${colors[index]} flex flex-col`}>
-                  <p className="text-gray-500 text-lg">{item.title}</p>
-                  <div className={`flex items-center justify-between text-lg my-4 ${item.isPositive ? "text-green-600" : "text-red-600"}`}>
-                    <h2 className="text-sm md:text-base lg:text-3xl xl:text-2xl font-bold mr-2">{item.value}</h2>
-                    <div className='flex items-center gap-1'>
-                      {item.isPositive ? <BsArrowUpRight size={16} /> : <BsArrowDownRight size={16} />}
-                      <span>{item.change}</span>
+                <main className={`flex-1 border-l border-r ${darkMode ? "border-gray-700" : "border-gray-200"}`}>
+
+                    {/* NAVBAR */}
+                    <nav className={`${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"} flex flex-col sm:flex-row items-center justify-between gap-4 px-4 sm:px-8 py-4 border-b shadow-sm`}>
+                        <div className='text-sm sm:text-lg flex items-center gap-2 sm:gap-4'>
+                            <BiFoodMenu className='text-xl sm:text-2xl cursor-pointer' onClick={handleLeftMenu} />
+                            <CiStar className='text-xl sm:text-2xl' />
+                            <p className='text-gray-400 text-sm sm:text-lg'>Dashboards</p>
+                            <p className='text-gray-400 text-sm sm:text-lg'>/</p>
+                            <p className='text-sm sm:text-lg'>Default</p>
+                        </div>
+
+                        {/* Search Bar + Icons */}
+                        <div className='flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto'>
+                            <div className={`${darkMode ? "bg-gray-700 border-gray-600" : "bg-gray-200 border-gray-50"} flex items-center text-xs sm:text-lg px-2 gap-2 py-1 rounded-lg border w-full sm:w-auto`}>
+                                <IoSearchOutline className='text-gray-400 text-base sm:text-lg' />
+                                <input type="text" placeholder='Search' className={`outline-none text-xs sm:text-sm bg-transparent flex-1 ${darkMode ? "text-white" : "text-black"}`} />
+                                <div className='hidden sm:flex items-center text-gray-400 text-xl gap-1 pr-1'>
+                                    <MdKeyboardCommandKey /><p className='pb-1'>/</p>
+                                </div>
+                            </div>
+
+                            <div className='text-xl sm:text-2xl flex gap-3 sm:gap-4'>
+                                <button onClick={() => setDarkMode(!darkMode)}>
+                                    {darkMode ? <MdOutlineLightMode /> : <MdDarkMode />}
+                                </button>
+                                <IoTimerOutline />
+                                <PiBellDuotone />
+                                <BiFoodMenu onClick={handleRightMenu} className="cursor-pointer" />
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* CONTENT */}
+                    <div className='w-full mt-8 px-4 sm:px-8'>
+
+                        {/* Heading */}
+                        <div className='flex items-center gap-2 mb-8'>
+                            <h1 className='font-semibold text-base sm:text-lg'>Today</h1>
+                            <IoIosArrowDown className='mt-1 text-gray-500 text-sm sm:text-lg' />
+                        </div>
+
+                        {/* Stats Cards */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {stats.map((item, index) => (
+                                <div key={index} className={`p-4 rounded-2xl shadow-sm ${colors[index]} flex flex-col`}>
+                                    <p className="text-gray-500 text-sm sm:text-base">{item.title}</p>
+                                    <div className={`flex items-center justify-between text-sm sm:text-lg my-4 ${item.isPositive ? "text-green-600" : "text-red-600"}`}>
+                                        <h2 className="text-base sm:text-xl md:text-3xl font-bold">{item.value}</h2>
+                                        <div className='flex items-center gap-1'>
+                                            {item.isPositive ? <BsArrowUpRight size={16} /> : <BsArrowDownRight size={16} />}
+                                            <span>{item.change}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Third section (Images) */}
+                        <section className='mt-12 flex flex-col lg:flex-row items-center gap-7'>
+                            <div className='w-full lg:w-[70%]'>
+                                <img src={total_users} alt="total_users" className='w-full h-auto max-h-52 sm:max-h-72 lg:max-h-[400px] shadow-md rounded-2xl bg-gray-50 object-contain' />
+                            </div>
+                            <div className='w-full lg:w-[30%] flex justify-center'>
+                                <img src={traffic_by_website} alt="traffic_by_website" className='w-full h-auto max-h-52 sm:max-h-72 lg:max-h-[400px] shadow-md rounded-2xl bg-gray-50 object-contain' />
+                            </div>
+                        </section>
+
+                        {/* Fourth section */}
+                        <section className='mt-12 w-full flex flex-col lg:flex-row items-center justify-between gap-6'>
+                            <div className='w-full lg:w-[50%] shadow-lg rounded-2xl'>
+                                <img src={TrafficByDevice} alt="TrafficByDevice" className='w-full h-auto rounded-2xl object-contain' />
+                            </div>
+                            <div className='w-full lg:w-[50%] shadow-lg rounded-2xl'>
+                                <img src={TrafficByLocation} alt="TrafficByLocation" className='w-full h-auto rounded-2xl object-contain' />
+                            </div>
+                        </section>
                     </div>
-                  </div>
-                </div>
-              ))}
+                </main>
+
+                {/* Right Notification Sidebar */}
+                <Notifications open={rightMenuOpen} openMenu={openMenu} setOpenMenu={setOpenMenu} />
             </div>
-
-            {/* Third section */}
-            <section className='mt-16 w-full flex items-center justify-between gap-7'>
-              <div className='w-[70%]'>
-                <img src={total_users} alt="total_users" className='lg:h-[400px] shadow-md rounded-2xl bg-gray-50 object-scale-down lg:w-full w-[60%]' />
-              </div>
-              <div className='lg:w-[30%]'>
-                <img src={traffic_by_website} alt="traffic_by_website" className='lg:h-[400px] rounded-2xl shadow-md bg-gray-50 object-scale-down lg:w-full w-[20]' />
-              </div>
-            </section>
-
-            {/* forth section */}
-            <section className='mt-16 w-full flex items-center justify-between gap-16'>
-              <div className='w-[50%] shadow-lg rounded-2xl'>
-                <img src={TrafficByDevice} alt="TrafficByDevice" className='rounded-2xl' />
-              </div>
-              <div className='w-[50%] shadow-lg rounded-2xl'>
-                <img src={TrafficByLocation} alt="TrafficByLocation" className='rounded-2xl' />
-              </div>
-            </section>
-          </div>
-        </main>
-
-        {/* Right Notification Sidebar */}
-        <Notifications open={rightMenuOpen} />
-      </div>
-    </div>
-  );
+        </div>
+    );
 };
 
 export default Dashboard;

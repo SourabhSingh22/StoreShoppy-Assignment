@@ -6,8 +6,9 @@ import {
 } from "react-icons/md";
 import { PiChatsCircleBold } from "react-icons/pi";
 import snowflake from "../assets/snowflake.png";
+import { RxCross2 } from "react-icons/rx";
 
-const Profile = ({ openMenu }) => {
+const Profile = ({ openMenu, setOpenMenu }) => {
   const [showUserProfileItems, setShowUserProfileItems] = useState(false);
 
   const showItems = () => {
@@ -16,12 +17,17 @@ const Profile = ({ openMenu }) => {
 
   return (
     <aside
-    className={`
+      className={`
         fixed md:static top-0 left-0 h-full bg-white
-        transition-all duration-500 ease-in-out
+        transition-all duration-500 ease-in-out z-50
         ${openMenu ? "w-52 opacity-100" : "w-0 opacity-0 overflow-hidden"}
       `}
     >
+      {/* Close (Cross) Button for Mobile */}
+      <div className="lg:hidden absolute right-0 top-4 mx-4 text-2xl cursor-pointer" onClick={() => setOpenMenu(false)}>
+        <RxCross2  />
+      </div>
+
       {/* User Profile */}
       <div className="flex items-center gap-3 px-4 py-4">
         <FaUserCircle className="text-3xl text-gray-700" />
@@ -74,21 +80,11 @@ const Profile = ({ openMenu }) => {
               ${showUserProfileItems ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}
             `}
           >
-            <li className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100">
-              Overview
-            </li>
-            <li className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100">
-              Projects
-            </li>
-            <li className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100">
-              Campaigns
-            </li>
-            <li className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100">
-              Documents
-            </li>
-            <li className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100">
-              Followers
-            </li>
+            <li className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100">Overview</li>
+            <li className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100">Projects</li>
+            <li className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100">Campaigns</li>
+            <li className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100">Documents</li>
+            <li className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100">Followers</li>
           </div>
         </ul>
       </div>
@@ -115,7 +111,10 @@ const Profile = ({ openMenu }) => {
       <div className="px-6 py-6 flex items-center gap-2 justify-center">
         <img src={snowflake} className="w-5 mt-1" alt="snowflake" />
         <p className="text-blue-500 text-lg">
-          snow<span className="bg-gradient-to-r from-gray-300 to-gray-600 bg-clip-text text-transparent">ui</span>
+          snow
+          <span className="bg-gradient-to-r from-gray-300 to-gray-600 bg-clip-text text-transparent">
+            ui
+          </span>
         </p>
       </div>
     </aside>
