@@ -17,7 +17,7 @@ const Profile = ({ openMenu }) => {
   return (
     <aside
     className={`
-        fixed md:static top-0 left-0 h-full bg-white shadow-md
+        fixed md:static top-0 left-0 h-full bg-white
         transition-all duration-500 ease-in-out
         ${openMenu ? "w-52 opacity-100" : "w-0 opacity-0 overflow-hidden"}
       `}
