@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { CiStar } from "react-icons/ci";
 import { BiFoodMenu } from "react-icons/bi";
-import { IoSearchOutline, IoTimerOutline } from "react-icons/io5";
+import { IoSearchOutline } from "react-icons/io5";
 import { MdKeyboardCommandKey, MdOutlineLightMode, MdDarkMode } from "react-icons/md";
 import { PiBellDuotone } from "react-icons/pi";
+import { IoTimerOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import { BsArrowDownRight, BsArrowUpRight } from 'react-icons/bs';
 import total_users from '../assets/total_users.png';
@@ -35,26 +36,23 @@ const Dashboard = ({ darkMode, setDarkMode }) => {
         <Profile openMenu={openMenu} />
 
         <main className={`flex-1 border-l border-r ${darkMode ? "border-gray-700" : "border-gray-200"}`}>
-          {/* Navbar */}
-          <nav className={`${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"} flex flex-wrap items-center justify-between px-4 md:px-8 py-4 border-b shadow-sm`}>
-            <div className='text-xl flex items-center gap-2 md:gap-4'>
+          <nav className={`${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"} flex items-center justify-between px-8 py-4 border-b shadow-sm`}>
+            <div className='text-xl flex items-center gap-4'>
               <BiFoodMenu className='text-2xl cursor-pointer' onClick={handleLeftMenu} />
-              <CiStar className='text-2xl hidden sm:block' />
-              <p className='text-gray-400 text-sm sm:text-lg'>Dashboards</p>
-              <p className='text-gray-400 text-sm sm:text-lg hidden sm:block'>/</p>
-              <p className='text-sm sm:text-lg'>Default</p>
+              <CiStar className='text-2xl' />
+              <p className='text-gray-400 text-lg'>Dashboards</p>
+              <p className='text-gray-400 text-lg'>/</p>
+              <p className='text-lg'>Default</p>
             </div>
-            <div className='flex items-center gap-2 md:gap-4 mt-2 md:mt-0 w-full md:w-auto'>
-              {/* Search */}
-              <div className={`${darkMode ? "bg-gray-700 border-gray-600" : "bg-gray-200 border-gray-50"} flex items-center text-sm sm:text-lg px-2 gap-2 py-1 rounded-lg border flex-1 md:flex-initial`}>
-                <IoSearchOutline className='text-gray-400' />
-                <input type="text" placeholder='Search' className='outline-none text-xs sm:text-sm bg-transparent flex-1' />
-                <div className='hidden md:flex items-center text-gray-400 text-sm sm:text-xl gap-1 pr-1'>
+            <div className='flex items-center gap-4'>
+              <div className={`${darkMode ? "bg-gray-700 border-gray-600" : "bg-gray-200 border-gray-50"} flex items-center text-lg px-2 gap-2 py-1 rounded-lg border focus-within:border-blue-500`}>
+                <IoSearchOutline className='text-gray-400 text-lg' />
+                <input type="text" placeholder='Search' className='outline-none text-sm bg-transparent' />
+                <div className='flex items-center text-gray-400 text-xl gap-1 pr-1'>
                   <MdKeyboardCommandKey /><p className='pb-1'>/</p>
                 </div>
               </div>
-              {/* Icons */}
-              <div className='text-xl sm:text-2xl flex gap-3 sm:gap-4'>
+              <div className='text-2xl flex gap-4'>
                 <button onClick={() => setDarkMode(!darkMode)}>
                   {darkMode ? <MdOutlineLightMode /> : <MdDarkMode />}
                 </button>
@@ -66,22 +64,20 @@ const Dashboard = ({ darkMode, setDarkMode }) => {
           </nav>
 
           {/* Content Sections */}
-          <div className='w-full mt-8 px-4 md:px-8'>
-            {/* Heading */}
-            <div className='flex items-center gap-2 mb-6'>
-              <h1 className='font-semibold text-base sm:text-lg'>Today</h1>
-              <IoIosArrowDown className='mt-1 text-gray-500 text-sm sm:text-lg' />
+          <div className='w-full mt-12 px-8'>
+            <div className='flex items-center gap-2 mb-8'>
+              <h1 className='font-semibold text-lg'>Today</h1>
+              <IoIosArrowDown className='mt-1 text-gray-500 text-lg' />
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
               {stats.map((item, index) => (
                 <div key={index} className={`p-4 rounded-2xl shadow-sm ${colors[index]} flex flex-col`}>
-                  <p className="text-gray-500 text-sm sm:text-lg">{item.title}</p>
-                  <div className={`flex items-center justify-between text-sm sm:text-lg my-2 sm:my-4 ${item.isPositive ? "text-green-600" : "text-red-600"}`}>
-                    <h2 className="text-base sm:text-xl lg:text-2xl font-bold mr-2">{item.value}</h2>
+                  <p className="text-gray-500 text-lg">{item.title}</p>
+                  <div className={`flex items-center justify-between text-lg my-4 ${item.isPositive ? "text-green-600" : "text-red-600"}`}>
+                    <h2 className="text-sm md:text-base lg:text-3xl xl:text-2xl font-bold mr-2">{item.value}</h2>
                     <div className='flex items-center gap-1'>
-                      {item.isPositive ? <BsArrowUpRight size={14} /> : <BsArrowDownRight size={14} />}
+                      {item.isPositive ? <BsArrowUpRight size={16} /> : <BsArrowDownRight size={16} />}
                       <span>{item.change}</span>
                     </div>
                   </div>
@@ -90,22 +86,22 @@ const Dashboard = ({ darkMode, setDarkMode }) => {
             </div>
 
             {/* Third section */}
-            <section className='mt-10 w-full flex flex-col lg:flex-row items-center justify-between gap-6'>
-              <div className='w-full lg:w-[70%]'>
-                <img src={total_users} alt="total_users" className='w-full rounded-2xl shadow-md object-contain' />
+            <section className='mt-16 w-full flex items-center justify-between gap-7'>
+              <div className='w-[70%]'>
+                <img src={total_users} alt="total_users" className='lg:h-[400px] shadow-md rounded-2xl bg-gray-50 object-scale-down lg:w-full w-[60%]' />
               </div>
-              <div className='w-full lg:w-[30%]'>
-                <img src={traffic_by_website} alt="traffic_by_website" className='w-full rounded-2xl shadow-md object-contain' />
+              <div className='lg:w-[30%]'>
+                <img src={traffic_by_website} alt="traffic_by_website" className='lg:h-[400px] rounded-2xl shadow-md bg-gray-50 object-scale-down lg:w-full w-[20]' />
               </div>
             </section>
 
-            {/* Fourth section */}
-            <section className='mt-10 w-full flex flex-col lg:flex-row items-center justify-between gap-6'>
-              <div className='w-full lg:w-[50%] shadow-lg rounded-2xl'>
-                <img src={TrafficByDevice} alt="TrafficByDevice" className='w-full rounded-2xl object-contain' />
+            {/* forth section */}
+            <section className='mt-16 w-full flex items-center justify-between gap-16'>
+              <div className='w-[50%] shadow-lg rounded-2xl'>
+                <img src={TrafficByDevice} alt="TrafficByDevice" className='rounded-2xl' />
               </div>
-              <div className='w-full lg:w-[50%] shadow-lg rounded-2xl'>
-                <img src={TrafficByLocation} alt="TrafficByLocation" className='w-full rounded-2xl object-contain' />
+              <div className='w-[50%] shadow-lg rounded-2xl'>
+                <img src={TrafficByLocation} alt="TrafficByLocation" className='rounded-2xl' />
               </div>
             </section>
           </div>
