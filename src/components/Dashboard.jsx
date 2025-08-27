@@ -14,8 +14,7 @@ import TrafficByLocation from '../assets/TrafficByLocation.png';
 import Profile from './Profile';
 import Notifications from './Notifications';
 
-const Dashboard = () => {
-  const [darkMode, setDarkMode] = useState(true);
+const Dashboard = ({ darkMode, setDarkMode }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [rightMenuOpen, setRightMenuOpen] = useState(false);
 
@@ -31,23 +30,24 @@ const Dashboard = () => {
   const handleRightMenu = () => setRightMenuOpen(!rightMenuOpen);
 
   return (
-    <div className={`w-full h-full transition-all duration-300`}>
+    <div className={`w-full h-full transition-all duration-300 ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"}`}>
       <div className="flex">
-      {/* Left Profile Sidebar */}
+        {/* Left Profile Sidebar */}
         <Profile openMenu={openMenu} />
-        <main className={`flex-1 border-l border-r border-gray-200`}>
-          <nav className='bg-white flex items-center justify-between px-8 py-4 border-b border-gray-200 shadow-sm'>
+
+        <main className={`flex-1 border-l border-r ${darkMode ? "border-gray-700" : "border-gray-200"}`}>
+          <nav className={`${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"} flex items-center justify-between px-8 py-4 border-b shadow-sm`}>
             <div className='text-xl flex items-center gap-4'>
               <BiFoodMenu className='text-2xl cursor-pointer' onClick={handleLeftMenu} />
               <CiStar className='text-2xl' />
               <p className='text-gray-400 text-lg'>Dashboards</p>
               <p className='text-gray-400 text-lg'>/</p>
-              <p className='text-lg text-neutral-800'>Default</p>
+              <p className='text-lg'>Default</p>
             </div>
             <div className='flex items-center gap-4'>
-              <div className='flex items-center bg-gray-200 text-lg px-2 gap-2 py-1 rounded-lg border border-gray-50 focus-within:border-blue-500'>
+              <div className={`${darkMode ? "bg-gray-700 border-gray-600" : "bg-gray-200 border-gray-50"} flex items-center text-lg px-2 gap-2 py-1 rounded-lg border focus-within:border-blue-500`}>
                 <IoSearchOutline className='text-gray-400 text-lg' />
-                <input type="text" placeholder='Search' className='outline-none text-sm' />
+                <input type="text" placeholder='Search' className='outline-none text-sm bg-transparent' />
                 <div className='flex items-center text-gray-400 text-xl gap-1 pr-1'>
                   <MdKeyboardCommandKey /><p className='pb-1'>/</p>
                 </div>
@@ -58,7 +58,7 @@ const Dashboard = () => {
                 </button>
                 <IoTimerOutline />
                 <PiBellDuotone />
-                <BiFoodMenu  onClick={handleRightMenu} className="cursor-pointer" />
+                <BiFoodMenu onClick={handleRightMenu} className="cursor-pointer" />
               </div>
             </div>
           </nav>
@@ -85,7 +85,7 @@ const Dashboard = () => {
               ))}
             </div>
 
-              {/* Third section */}
+            {/* Third section */}
             <section className='mt-16 w-full flex items-center justify-between gap-7'>
               <div className='w-[70%]'>
                 <img src={total_users} alt="total_users" className='lg:h-[400px] shadow-md rounded-2xl bg-gray-50 object-scale-down lg:w-full w-[60%]' />
@@ -96,8 +96,7 @@ const Dashboard = () => {
             </section>
 
             {/* forth section */}
-
-            <section className='mt-16 w-full flex items-center justify-between gap-16 mb-4'>
+            <section className='mt-16 w-full flex items-center justify-between gap-16'>
               <div className='w-[50%] shadow-lg rounded-2xl'>
                 <img src={TrafficByDevice} alt="TrafficByDevice" className='rounded-2xl' />
               </div>
@@ -108,8 +107,6 @@ const Dashboard = () => {
           </div>
         </main>
 
-
-        
         {/* Right Notification Sidebar */}
         <Notifications open={rightMenuOpen} />
       </div>
