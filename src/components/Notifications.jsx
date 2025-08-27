@@ -24,14 +24,14 @@ const contacts = [
   { id: 6, name: "Melody Macy", avatar: "https://i.pravatar.cc/30?img=11" },
 ];
 
-const Notifications = ({ open }) => {
+const Notifications = ({ open}) => {
   return (
     <div
       className={`fixed md:static top-0 left-0 h-full bg-white transition-all duration-300 ${open ? "w-52" : "w-0 overflow-hidden bg-gray-100"}`}
     >
       {/* Header */}
       <div className="flex items-center justify-between p-4">
-        <h2 className="text-lg font-semibold">Notifications</h2>
+        <h2 className="text-lg font-semibold text-black">Notifications</h2>
       </div>
 
       {/* Content */}

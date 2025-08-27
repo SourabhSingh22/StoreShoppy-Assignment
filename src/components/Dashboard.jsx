@@ -47,7 +47,7 @@ const Dashboard = ({ darkMode, setDarkMode }) => {
             <div className='flex items-center gap-4'>
               <div className={`${darkMode ? "bg-gray-700 border-gray-600" : "bg-gray-200 border-gray-50"} flex items-center text-lg px-2 gap-2 py-1 rounded-lg border focus-within:border-blue-500`}>
                 <IoSearchOutline className='text-gray-400 text-lg' />
-                <input type="text" placeholder='Search' className='outline-none text-sm bg-transparent' />
+                <input type="text" placeholder='Search' className={`outline-none text-sm bg-transparent ${darkMode ? "text-white" : "text-black"}`} />
                 <div className='flex items-center text-gray-400 text-xl gap-1 pr-1'>
                   <MdKeyboardCommandKey /><p className='pb-1'>/</p>
                 </div>
