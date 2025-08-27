@@ -33,9 +33,9 @@ const Dashboard = () => {
   return (
     <div className={`w-full h-full transition-all duration-300`}>
       <div className="flex">
-        {openMenu && <Profile openMenu={openMenu} />}
-        
-        <main className={`flex-1 border-l border-gray-200`}>
+      {/* Left Profile Sidebar */}
+        <Profile openMenu={openMenu} />
+        <main className={`flex-1 border-l border-r border-gray-200`}>
           <nav className='bg-white flex items-center justify-between px-8 py-4 border-b border-gray-200 shadow-sm'>
             <div className='text-xl flex items-center gap-4'>
               <BiFoodMenu className='text-2xl cursor-pointer' onClick={handleLeftMenu} />
@@ -108,8 +108,10 @@ const Dashboard = () => {
           </div>
         </main>
 
+
+        
         {/* Right Notification Sidebar */}
-        <Notifications open={rightMenuOpen} onClose={handleRightMenu} />
+        <Notifications open={rightMenuOpen} />
       </div>
     </div>
   );
